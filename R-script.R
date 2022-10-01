@@ -10,19 +10,24 @@ p_load(dplyr, tidyr, tibble, data.table)
 #1 Vectores
 
 vector_pares<-1:100
+#para crear un vector se define el nombre del vector y se le asigna a la sucesión números del 1 al 100
 vector_impares <- seq(1,99,by=2)
+#se definio un vector de numeros del 1 al 99 de dos en dos empezando desde el 1 para obtener los valores impares 
 vector_3 <- 1:100 
 vector_f<- vector_3[-(vector_impares)]
-
+#se definio un tercer vector con todos los numeros del 1 al 100 y luego de ese vector se creo uno nuevo que descontara el valor contenido en los vectores impares
 #2.1 Importar
 
 caracteristicas_generales <-import(file="input/Enero - Cabecera - Caracteristicas generales (Personas).csv", encoding="UTF-8")
+#se importo desde la carpeta de input la base de Enero - Cabecera - Caracteristicas generales (Personas) en formato csv
 ocupados <-import(file="input/Enero - Cabecera - Ocupados.csv", encoding="UTF-8")
-
+#se importo desde la carpeta de input la base de Enero - Cabecera - Ocupados en formato csv
+<<<<<<< Updated upstream
 # 2.2 exportar
 export(x=caracteristicas_generales, file="output/Caracteristicas generales (Personas).rds")
+# se creo un nuevo archivo en la carpeta de output llamado Caracteristicas generales (personas) en formato rds
 export(x=ocupados, file="output/Ocupados.rds")
-
+# se creo un nuevo archivo en la carpeta de output llamado Ocupados en formato rds
 # 3. Agregar variables a un conjunto de datos existente. 
 ## Para este caso, es posible usar el simbolo "$" para agregar variables a el conjunto de datos existentes.Paralelamente, se puede usar la función mutate de la librería dplyr
 
@@ -48,3 +53,5 @@ caracteristicas_generales_interés<- select(caracteristicas_generales, SECUENCIA
 ##4.c
 Ocupados_interes <-  select(ocupados_1, DIRECTORIO, SECUENCIA_P, ORDEN,HOGAR, ocupado, INGLABO, P6050)
 ##En este caso, creamos el objeto Ocupados_interes que solo incluye las variables de interés. Para esto, se utilizó la función select()
+=======
+
