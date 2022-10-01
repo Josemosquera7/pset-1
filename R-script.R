@@ -1,4 +1,4 @@
-#Santiago Huertas
+#Santiago Huertas 202021311
 #Jose Mosquera 202110281
 #David Chaparro 202023984
 #R version 4.2.1 (2022-06-23 ucrt)
