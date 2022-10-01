@@ -14,7 +14,7 @@ vector_impares <- seq(1,99,by=2)
 vector_3 <- 1:100 
 vector_f<- vector_3[-(vector_impares)]
 
-#2 Importar
+#2.1 Importar
 
 caracteristicas_generales <-import(file="input/Enero - Cabecera - Caracteristicas generales (Personas).csv", encoding="UTF-8")
 ocupados <-import(file="input/Enero - Cabecera - Ocupados.csv", encoding="UTF-8")
