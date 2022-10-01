@@ -18,3 +18,7 @@ vector_f<- vector_3[-(vector_impares)]
 
 caracteristicas_generales <-import(file="input/Enero - Cabecera - Caracteristicas generales (Personas).csv", encoding="UTF-8")
 ocupados <-import(file="input/Enero - Cabecera - Ocupados.csv", encoding="UTF-8")
+
+# 2.2 exportar
+export(x=caracteristicas_generales, file="output/Caracteristicas generales (Personas).rds")
+export(x=ocupados, file="output/Ocupados.rds")
