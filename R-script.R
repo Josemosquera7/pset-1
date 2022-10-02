@@ -44,15 +44,22 @@ caracteristicas_condicionada <- mutate(caracteristicas_generales, joven = ifelse
 filter(caracteristicas_condicionada, P6040 <70 & P6040> 18)
 caracteristicas_condicionada <- caracteristicas_condicionada %>%
   filter(P6040 < 70 & P6040 > 18)
+##Se usó la función filter() para dejar unicamente las observaciones de las personas entre 18 y 70 
 
 ##4.b crear una base que solo tenga determindas variables
-caracteristicas_generales_interés<- select(caracteristicas_generales, SECUENCIA_P, ORDEN,
-                                     HOGAR, DIRECTORIO, P6020, P6040, P6920, DPTO, fex_c_2011, ESC, MES)
+caracteristicas_generales_interés<- select(caracteristicas_condicionada, SECUENCIA_P, ORDEN,
+                                     HOGAR, DIRECTORIO, P6020, P6040, DPTO, fex_c_2011, ESC, MES, P6050)
 ##En este caso, creamos el objeto caracteristicas_generales_interes que solo incluye las variables de interés. Para esto, se utilizó la función select()
+##En la base de caracteristicas generales no existe la variable P6920 
+##Se asumio que era un error de redaccion y se utilizó la variable P6050
 
 
 ##4.c
-Ocupados_interes <-  select(ocupados_1, DIRECTORIO, SECUENCIA_P, ORDEN,HOGAR, ocupado, INGLABO, P6050)
+Ocupados_interes <-  select(ocupados_1, DIRECTORIO, SECUENCIA_P, ORDEN,HOGAR, ocupado, INGLABO, P6920)
 ##En este caso, creamos el objeto Ocupados_interes que solo incluye las variables de interés. Para esto, se utilizó la función select()
-=======
+##En la base de ocupados no existe la variable P6050
+##Se asumio que era un error de redaccion y se utilizo la variable P6920
+
+
+
 
