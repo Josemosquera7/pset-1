@@ -22,7 +22,7 @@ caracteristicas_generales <-import(file="input/Enero - Cabecera - Caracteristica
 #se importo desde la carpeta de input la base de Enero - Cabecera - Caracteristicas generales (Personas) en formato csv
 ocupados <-import(file="input/Enero - Cabecera - Ocupados.csv", encoding="UTF-8")
 #se importo desde la carpeta de input la base de Enero - Cabecera - Ocupados en formato csv
-<<<<<<< Updated upstream
+
 # 2.2 exportar
 export(x=caracteristicas_generales, file="output/Caracteristicas generales (Personas).rds")
 # se creo un nuevo archivo en la carpeta de output llamado Caracteristicas generales (personas) en formato rds
@@ -41,8 +41,9 @@ caracteristicas_condicionada <- mutate(caracteristicas_generales, joven = ifelse
 
 ##4.a eliminar filas y columnas de un conjunto de datos 
 
-caracteristicas_generales %>%
-  subset(P6040 > 70 & P6040 < 18) 
+filter(caracteristicas_condicionada, P6040 <70 & P6040> 18)
+caracteristicas_condicionada <- caracteristicas_condicionada %>%
+  filter(P6040 < 70 & P6040 > 18)
 
 ##4.b crear una base que solo tenga determindas variables
 caracteristicas_generales_interés<- select(caracteristicas_generales, SECUENCIA_P, ORDEN,
