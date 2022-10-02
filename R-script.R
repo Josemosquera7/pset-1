@@ -64,5 +64,41 @@ Ocupados_interes <-  select(ocupados_1, DIRECTORIO, SECUENCIA_P, ORDEN,HOGAR, oc
 caracteristicas_ocupados  <- inner_join(x=Ocupados_interes, y=caracteristicas_generales_interés, by=c("SECUENCIA_P", "ORDEN", "HOGAR", "DIRECTORIO"))
 ##Se usó la función de inner_join() para combinar las bases de datos buscando que se mantengan las observaciones que tenagn las mismas observaciones de las dos bases de datos 
 
+##6. Descriptivas de un conjunto de datos
+graph_1 <- ggplot(data = caracteristicas_ocupados , mapping = aes(x = P6040 , y = INGLABO)) +
+  geom_point(col = "red" , size = 0.5)
+##Se hizo un grafico de dispersion entre la edad y el ingreso laboral
 
+graph_2 <- ggplot(data = caracteristicas_ocupados, 
+                  mapping = aes( x =P6040 , y = INGLABO, group= as.character(P6020), color = as.factor(P6020))) +
+  geom_point(size = 0.5)
+graph_2 + scale_color_manual(values = c("2"="red" , "1"="blue") , label = c("1"="Hombre" , "2"="Mujer") , name = "Sexo")
+##Se hizo un grafico de dispersion con las mismas caracteristicas que el anterior, pero discriminando por sexo
 
+density <- filter(caracteristicas_ocupados, !is.na(DPTO) & INGLABO < 1e+07 ) %>% 
+  ggplot(data=. , mapping = aes(x = INGLABO, group = as.factor(DPTO), fill = as.factor(DPTO))) + 
+  geom_density() 
+density <- density  + 
+  scale_fill_discrete(label = c("5"="Antioquia" , "8"="Atlantico", "13"="Bolivar", "15"="Boyaca","17"="Caldas", "18"="Caqueta",
+                                "19"="Cauca", "20"="Cesar", "23"="Cordoba", "25"="Cundinamarca", "27"="Choco", "41"="Huila",
+                                "44"="La Guajira", "47"="Magdalena", "50"="Meta", "52"="Narino", "54"="Norte de Santander",
+                                "63"="Quindio", "66"="Risaralda", "68"="Santander", "70"="Sucre", "73=Tolima", "76"="Valle del Cauca"), name = "Departamento") + 
+  labs(x = "Ingresos" , y = "",
+       title = "Ingresos menores a 10 SLMV",
+       subtitle = "Desagregados por departamento")
+##Se hizo un gráfico de densidad para comparar la densidad de salarios por departamento 
+
+summary(caracteristicas_ocupados[,c("INGLABO", "P6920", "P6020","P6040","P6050")])
+##Se hace una descripción general del ingreso laboral, si cotiza en pensiones, su género, la edad y el parentesco con el jefe del hogar
+
+select(caracteristicas_ocupados, c("INGLABO", "P6040")) %>%  summarize_all(list(min, max, median, mean), na.rm = T)
+##Se obtienen las caracteristicas solo del ingreso y el ingreso laboral
+
+caracteristicas_ocupados %>% 
+  select(INGLABO,P6020,ESC) %>% 
+  group_by(P6020) %>%  
+  summarise(promedio_inglabo = mean(INGLABO, na.rm = T),
+            mediana_inglabo = median(INGLABO, na.rm = T),
+            promedio_ESC = mean(ESC, na.rm = T),
+            mediana_ESC = median(ESC, na.rm = T))
+##Esta tabla refleja el promedio y la mediana de los años de escolaridad y el salario por hombres y mujeres 
