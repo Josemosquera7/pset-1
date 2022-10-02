@@ -60,6 +60,9 @@ Ocupados_interes <-  select(ocupados_1, DIRECTORIO, SECUENCIA_P, ORDEN,HOGAR, oc
 ##En la base de ocupados no existe la variable P6050
 ##Se asumio que era un error de redaccion y se utilizo la variable P6920
 
+##5. Combinar bases de datos 
+caracteristicas_ocupados  <- inner_join(x=Ocupados_interes, y=caracteristicas_generales_interés, by=c("SECUENCIA_P", "ORDEN", "HOGAR", "DIRECTORIO"))
+##Se usó la función de inner_join() para combinar las bases de datos buscando que se mantengan las observaciones que tenagn las mismas observaciones de las dos bases de datos 
 
 
 
